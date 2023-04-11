@@ -3,6 +3,7 @@ namespace Express {
     user: {
       username: string,
       token: string,
+      id: number,
     },
   }
 }

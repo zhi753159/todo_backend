@@ -49,7 +49,7 @@ export default {
     },
 
     UserList: [
-        { username: 'usera', password: '123456' },
-        { username: 'userb', password: '123456' },
+        { id: 1, username: 'usera', password: '123456' },
+        { id: 2, username: 'userb', password: '123456' },
     ],
 }

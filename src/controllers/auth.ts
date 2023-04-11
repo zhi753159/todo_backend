@@ -29,9 +29,10 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     global.TokenBuffer.push({
       token,
       username: user.username,
+      id: user.id,
     })
 
-    res.status(400).json(`Login success. Please embbed the jwt token [bear ${token}] into Authorization header for testing`)
+    res.status(200).json(`Login success. Please embbed the jwt token [bear ${token}] into Authorization header for testing`)
   } catch (err) {
     next(err)
   }

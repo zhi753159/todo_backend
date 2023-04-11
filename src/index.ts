@@ -14,8 +14,9 @@ import errorHandler from 'errorhandler'
 import routes from './routes'
 
 (async ()=> {
-    // Enmpty login token buffer
-    global.TokenBuffer = []    
+    // Enmpty login token & to do list buffer
+    global.TokenBuffer = []
+    global.ToDoList = []
 
     // Create Express server
     const app = express()
