@@ -1,0 +1,1 @@
+declare var TokenBuffer: Express.Request.user[]
