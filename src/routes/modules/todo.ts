@@ -8,10 +8,10 @@ import * as todoController from '../../controllers/todo'
 
 
 const router = express.Router()
-
-router.get('/getMyList', auth, todoController.getMyList)
-router.post('/', auth, todoController.addNewTodo)
-router.put('/:id', auth, todoController.updateTodo)
-router.delete('/:id', auth, todoController.deleteTodo)
+router.use(auth)
+router.get('/getMyList', todoController.getMyList)
+router.post('/', todoController.addNewTodo)
+router.put('/:id', todoController.updateTodo)
+router.delete('/:id', todoController.deleteTodo)
 
 export default router
