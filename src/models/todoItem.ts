@@ -1,4 +1,4 @@
-import BaseModel from "./baseModel"
+import BaseModel from "./BaseModel"
 
 export default class TodoItem extends BaseModel {
 
