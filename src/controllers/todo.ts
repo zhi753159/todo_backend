@@ -1,7 +1,7 @@
 import config from '../config'
 import { Request, Response, NextFunction } from 'express'
 import { Type, validate, RegEx } from 'validate-typescript'
-import TodoItem from '../models/todoItem'
+import TodoItem from '../models/TodoItem'
 
 /**
  * GET /getmylist

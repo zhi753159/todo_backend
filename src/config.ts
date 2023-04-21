@@ -34,9 +34,10 @@ export default {
     ENVIRONMENT: process.env.NODE_ENV,
 
     APP_SESSION_SECRET: process.env.APP_SESSION_SECRET,
-    APP_PORT: convertType(process.env.APP_PORT || '3000'),
-    APP_SALT_ROUND: convertType(process.env.APP_SALT_ROUND || '12'),
+    APP_PORT: convertType(process.env.APP_PORT || '3000') as number,
+    APP_SALT_ROUND: convertType(process.env.APP_SALT_ROUND || '12') as number,
     APP_URL_PREFIX: process.env.APP_URL_PREFIX || '/',
+    APP_SYSTEM_LOG_KEEP_DAYS: convertType(process.env.APP_SYSTEM_LOG_KEEP_DAYS || '1') as number,
 
     CORS_OPTIONS: {
         origin: true,

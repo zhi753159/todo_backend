@@ -13,6 +13,7 @@ import errorHandler from 'errorhandler'
 import Logger from './utils/logger'
 
 import routes from './routes'
+import scheduler from './scheduler'
 
 (async ()=> {
     // Enmpty login token & to do list buffer & initialize logger
@@ -81,4 +82,7 @@ import routes from './routes'
     app.listen(app.get('port'), () => {
         global.logger.system.info(`App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`)
     })
+
+    // Start scheduler
+    scheduler.init()
 })()
