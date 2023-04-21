@@ -10,13 +10,15 @@ import helmet from 'helmet'
 // Local scripts
 import config from './config'
 import errorHandler from 'errorhandler'
+import Logger from './utils/logger'
 
 import routes from './routes'
 
 (async ()=> {
-    // Enmpty login token & to do list buffer
+    // Enmpty login token & to do list buffer & initialize logger
     global.TokenBuffer = []
     global.ToDoList = []
+    global.logger = new Logger()
 
     // Create Express server
     const app = express()
@@ -34,15 +36,16 @@ import routes from './routes'
     // Route logging
     if (process.env.NODE_ENV !== 'test') {
         app.use((req: Request, res: Response, next: NextFunction) => {
-            console.log({
+            global.logger.system.info({
                 method: req.method,
                 path: req.path,
                 params: req.params,
                 body: req.body,
+                query: req.query,
             })
 
             res.on('finish', () => {
-                console.log({
+                global.logger.system.info({
                     statusCode: res.statusCode,
                     statusMessage: res.statusMessage,
                 })
@@ -62,19 +65,20 @@ import routes from './routes'
     })
 
     app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-        if (err.message === 'Validate TypeScript') {
-            return res.status(400).json('Input Invalid')
-        }
         const errorData = {
             name: err.name,
             message: err.message,
             stack: err.stack,
+        }
+        global.logger.system.error(errorData)
+        if (err.message === 'Validate TypeScript') {
+            return res.status(400).json('Input Invalid')
         }
 
         res.status(500).json(errorData)
     })
 
     app.listen(app.get('port'), () => {
-        console.log(`App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`)
+        global.logger.system.info(`App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`)
     })
 })()

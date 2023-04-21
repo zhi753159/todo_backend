@@ -24,7 +24,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
       return res.status(401).json({})
     }
 
-    console.log(`(${user.username}) has logged in the system`)
+    global.logger.system.info(`(${user.username}) has logged in the system`)
     const token = jwt.sign({ username: user.username }, config.APP_SESSION_SECRET);
     global.TokenBuffer.push({
       token,
