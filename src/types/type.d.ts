@@ -5,5 +5,6 @@ namespace Express {
       token: string,
       id: number,
     },
+    models: any,
   }
 }
